@@ -8,10 +8,10 @@ int getHighNum(std::vector<int> vec, int &index) {
 	if (vec.size() <= 0)
 		return 0;
 
-	int highNumber = -INT_MAX;
+	int highNumber = INT_MAX;
 
-	for (int i = 0; i < vec.size(); i++) {
-		if (vec[i] > highNumber) {
+	for (int i = 1; i < vec.size(); i++) {
+		if (vec[i] < highNumber) {
 			highNumber = vec[i];
 			index = i;
 		}
@@ -62,6 +62,10 @@ void moveStack(std::stack<int> &from, std::stack<int> &to, int size) {
 
 		std::cout << getHighNum(vec, index) << " - moved to stack #2\n";
 		DeleteElementFromVector(vec, index);
+
+		std::cout << "\nstack #2: ";
+		printStack(to, to.size());
+		std::cout << "\n";
 	}
 	std::cout << "\n";
 }
@@ -81,8 +85,8 @@ int main() {
 	int numbers[size] = { 9, 8, 7, 6, 5, 4, 3, 2, 1 };
 	std::stack<int> st1, st2, st3;
 
-	for (int i = 0; i < size; i++) {
-		st1.push(numbers[i]);
+	for (int i = size; i > 0; i--) {
+		st1.push(numbers[i - 1]);
 	}
 
 	printAll(st1, st2, st3);
